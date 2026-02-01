@@ -4,6 +4,7 @@ Provides a web interface for uploading CSV files and generating printable trivia
 """
 
 from flask import Flask, request, send_file, render_template, jsonify
+from flask_cors import CORS
 from pathlib import Path
 import tempfile
 import os
@@ -12,6 +13,9 @@ from werkzeug.utils import secure_filename
 from card_generator_v2 import load_cards_from_csv, render_pdf, LayoutConfig
 
 app = Flask(__name__)
+
+# Enable CORS for external sites to call the API
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # Configure upload limits (10MB max)
 app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024
