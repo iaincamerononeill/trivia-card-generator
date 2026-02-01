@@ -43,6 +43,10 @@ htmlcov/
 # Generated PDFs (optional - remove if you want to track generated PDFs)
 *.pdf
 
+# Flask
+instance/
+.webassets-cache
+
 # OS
 .DS_Store
 Thumbs.db

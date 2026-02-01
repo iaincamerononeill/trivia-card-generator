@@ -145,7 +145,26 @@ You can use any codes you like as long as each card has 6 unique subjects.
 
 ## Usage
 
-### Multi-Category Layout (Recommended)
+### Web Application (Easiest)
+
+**Use the web interface:**
+1. Run the Flask app:
+   ```bash
+   pip install -r requirements-web.txt
+   python app.py
+   ```
+2. Open your browser to `http://localhost:5000`
+3. Upload your CSV file
+4. Click "Generate Cards" to download your PDF
+
+**Deployment:**
+- Ready for Heroku, Render, Railway, or similar platforms
+- Includes `Procfile`, `runtime.txt`, and `requirements-web.txt`
+- See deployment section below for hosting on your website
+
+### Command Line Tool
+
+**Multi-Category Layout (Recommended):**
 
 **Generate cards with colored subject bullets:**
 ```bash
@@ -181,9 +200,56 @@ The code can also be run from the Jupyter notebook `card_generator.ipynb`.
 
 When you cut and flip each card, the answer will appear right-side up on the reverse!
 
+## Deployment
+
+### Hosting the Web App on Your Website
+
+**Option 1: Heroku (Free Tier)**
+```bash
+# Install Heroku CLI, then:
+heroku login
+heroku create your-trivia-cards
+git push heroku main
+heroku open
+```
+
+**Option 2: Render**
+1. Connect your GitHub repo to Render
+2. Create a new "Web Service"
+3. Build command: `pip install -r requirements-web.txt`
+4. Start command: `gunicorn app:app`
+
+**Option 3: Railway**
+1. Connect your GitHub repo to Railway
+2. Deploy automatically from main branch
+3. Handles everything based on `Procfile`
+
+**Option 4: Your Own Server**
+```bash
+# Install dependencies
+pip install -r requirements-web.txt
+
+# Run with gunicorn
+gunicorn app:app --bind 0.0.0.0:8000 --workers 2
+
+# Or use nginx as reverse proxy
+```
+
+All platforms support the included configuration files (`Procfile`, `runtime.txt`, `requirements-web.txt`).
+
 ## Code Architecture
 
-### New Layout (card_generator_v2.py)
+### Web Application (app.py)
+
+Flask-based web service with:
+- `/` - Web interface for uploading CSV files
+- `/api/generate` - POST endpoint that accepts CSV and returns PDF
+- `/api/health` - Health check endpoint
+- Automatic temp file cleanup
+- 10MB upload limit
+- Error handling and validation
+
+### Core Card Generator (card_generator_v2.py)
 
 #### Main Components
 
