@@ -468,7 +468,7 @@ Trivia card generator/
 
 ## License
 
-[Add your license here]
+MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Author
 
