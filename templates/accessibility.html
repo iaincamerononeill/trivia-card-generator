@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Statement - Trivia Card Generator</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { color: #667eea; margin-bottom: 10px; }
+        h2 { color: #666; margin-top: 30px; margin-bottom: 15px; }
+        h3 { color: #333; margin-top: 20px; margin-bottom: 10px; }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .update-date { color: #999; font-size: 14px; margin-bottom: 30px; }
+        ul { margin: 10px 0 10px 30px; }
+        li { margin: 8px 0; }
+        .status { padding: 15px; border-radius: 8px; margin: 15px 0; }
+        .status.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .status.partial { background: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+        .status.planned { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-link">← Back to Generator</a>
+    
+    <h1>Accessibility Statement</h1>
+    <p class="update-date">Last updated: February 11, 2026</p>
+
+    <h2>Our Commitment</h2>
+    <p>We are committed to making this Trivia Card Generator accessible to all users, including those with disabilities. We strive to meet Web Content Accessibility Guidelines (WCAG) 2.1 Level AA standards.</p>
+
+    <h2>Accessibility Features</h2>
+    
+    <div class="status success">
+        <h3>✅ Current Features</h3>
+        <ul>
+            <li><strong>Keyboard Navigation</strong> - All interactive elements can be accessed via Tab, Enter, and arrow keys</li>
+            <li><strong>Screen Reader Support</strong> - Semantic HTML with proper heading hierarchy and ARIA labels</li>
+            <li><strong>High Contrast</strong> - Clear visual distinction between elements with sufficient color contrast</li>
+            <li><strong>Responsive Design</strong> - Works on mobile, tablet, and desktop devices with flexible layouts</li>
+            <li><strong>Clear Labels</strong> - All form inputs have associated labels and helpful descriptions</li>
+            <li><strong>Error Messages</strong> - Clear, descriptive error messages for validation and processing errors</li>
+            <li><strong>Focus Indicators</strong> - Visible focus states on all interactive elements</li>
+            <li><strong>No Flashing Content</strong> - No content that could trigger seizures or vestibular disorders</li>
+            <li><strong>Skip Links</strong> - Ability to skip repeated content (where applicable)</li>
+            <li><strong>Resizable Text</strong> - Text can be resized up to 200% without loss of functionality</li>
+        </ul>
+    </div>
+
+    <div class="status partial">
+        <h3>⚠️ Known Limitations</h3>
+        <ul>
+            <li><strong>PDF Output</strong> - Generated PDFs may not be fully screen-reader accessible
+                <ul>
+                    <li>Consider keeping source CSV for accessible reference</li>
+                    <li>Physical cards provide tactile learning alternative</li>
+                    <li>We're exploring tagged PDF options for future releases</li>
+                </ul>
+            </li>
+            <li><strong>Drag & Drop</strong> - While supported, keyboard file selection is always available as an alternative</li>
+            <li><strong>AI-Generated Content</strong> - Accuracy and appropriateness depend on the AI provider</li>
+        </ul>
+    </div>
+
+    <h2>Browser & Assistive Technology Support</h2>
+    <p>This application has been tested with:</p>
+    <ul>
+        <li><strong>Screen Readers</strong>: NVDA (Windows), JAWS (Windows), VoiceOver (macOS/iOS), TalkBack (Android)</li>
+        <li><strong>Browsers</strong>: Chrome, Firefox, Safari, Edge (latest versions recommended)</li>
+        <li><strong>Operating Systems</strong>: Windows 10/11, macOS, iOS, Android</li>
+        <li><strong>Zoom</strong>: Up to 200% zoom without horizontal scrolling</li>
+    </ul>
+
+    <h2>How to Use with Assistive Technology</h2>
+    
+    <h3>Keyboard Shortcuts</h3>
+    <ul>
+        <li><strong>Tab</strong> - Navigate between interactive elements</li>
+        <li><strong>Shift + Tab</strong> - Navigate backwards</li>
+        <li><strong>Enter / Space</strong> - Activate buttons and controls</li>
+        <li><strong>Arrow Keys</strong> - Navigate within radio button groups</li>
+    </ul>
+
+    <h3>Screen Reader Tips</h3>
+    <ul>
+        <li>Form fields are clearly labeled with their purpose and requirements</li>
+        <li>Required fields are marked with an asterisk (*) and announced as required</li>
+        <li>Error messages are announced when validation fails</li>
+        <li>Status updates are announced during file processing</li>
+        <li>Radio button groups are properly grouped and labeled</li>
+        <li>The page has a logical heading structure (H1 → H2 → H3)</li>
+    </ul>
+
+    <h2>Print Accessibility</h2>
+    <p>The generated cards support multiple printing options to accommodate different needs:</p>
+    <ul>
+        <li><strong>Single-Sided</strong> - Easier to read and handle for some users</li>
+        <li><strong>Double-Sided</strong> - More compact, environmentally friendly</li>
+        <li><strong>Large Print</strong> - Cards are designed with clear, readable fonts (9pt body, 10pt headers)</li>
+        <li><strong>High Contrast Colors</strong> - Distinct colors for different categories (Yellow, Green, Pink, Brown, Blue, Orange)</li>
+        <li><strong>Color Independence</strong> - Category information is also conveyed through text labels, not color alone</li>
+    </ul>
+
+    <h2>Educational Accessibility</h2>
+    <p>Features designed for inclusive learning:</p>
+    <ul>
+        <li><strong>Flexible Subjects</strong> - Customize to match curriculum or interests</li>
+        <li><strong>Multiple Difficulty Levels</strong> - Adapt to different learning stages (Primary, Secondary, Adult)</li>
+        <li><strong>Clear Visual Layout</strong> - Color-coded categories with consistent positioning</li>
+        <li><strong>Tactile Elements</strong> - Physical cards support kinesthetic learning</li>
+        <li><strong>AI Generation</strong> - Create customized content for specific learning needs</li>
+    </ul>
+
+    <div class="status planned">
+        <h3>🔮 Future Improvements</h3>
+        <p>We are working on:</p>
+        <ul>
+            <li>Improved PDF accessibility with proper tagging for screen readers</li>
+            <li>Additional color schemes for color-blind users (high contrast, deuteranopia-friendly)</li>
+            <li>Option to adjust font sizes in generated PDFs</li>
+            <li>Export to accessible formats (HTML, plain text)</li>
+            <li>Voice input for question entry</li>
+            <li>Preview mode with adjustable contrast and font size</li>
+        </ul>
+    </div>
+
+    <h2>Feedback & Support</h2>
+    <p>We welcome feedback on accessibility. If you encounter any barriers or have suggestions for improvement:</p>
+    <ul>
+        <li>Open an issue on our GitHub repository (if available)</li>
+        <li>Include details about your assistive technology setup</li>
+        <li>Describe the specific barrier you encountered</li>
+        <li>Suggest potential solutions if you have ideas</li>
+    </ul>
+    <p>We aim to respond to accessibility issues within 5 business days.</p>
+
+    <h2>Standards Compliance</h2>
+    <p>We aim to conform to:</p>
+    <ul>
+        <li><strong>WCAG 2.1 Level AA</strong> - Web Content Accessibility Guidelines (target compliance)</li>
+        <li><strong>Section 508</strong> - US federal accessibility standards</li>
+        <li><strong>EN 301 549</strong> - European accessibility standard</li>
+        <li><strong>UK Equality Act 2010</strong> - Digital accessibility requirements</li>
+    </ul>
+
+    <h3>WCAG 2.1 Conformance Status</h3>
+    <ul>
+        <li><strong>Level A</strong>: Fully conformant</li>
+        <li><strong>Level AA</strong>: Partially conformant (PDF output is limitation)</li>
+        <li><strong>Level AAA</strong>: Not evaluated</li>
+    </ul>
+
+    <h2>Technical Specifications</h2>
+    <ul>
+        <li><strong>Semantic HTML5</strong> - Proper document structure with meaningful elements</li>
+        <li><strong>ARIA Labels</strong> - Used where native HTML is insufficient</li>
+        <li><strong>CSS for Visual Presentation</strong> - Separation of content and style</li>
+        <li><strong>Progressive Enhancement</strong> - Core functionality works without JavaScript for file uploads</li>
+        <li><strong>Responsive Grid</strong> - Flexible layouts that adapt to screen size</li>
+        <li><strong>Color Contrast</strong> - Minimum 4.5:1 for normal text, 3:1 for large text</li>
+    </ul>
+
+    <h2>Known Third-Party Limitations</h2>
+    <ul>
+        <li><strong>AI Provider Interfaces</strong> - Accessibility of OpenAI, Anthropic, and Google sign-up pages is controlled by those providers</li>
+        <li><strong>Browser Behavior</strong> - Some accessibility features depend on browser support</li>
+        <li><strong>PDF Viewers</strong> - PDF accessibility depends on the viewer used (Adobe Reader, browser built-in, etc.)</li>
+    </ul>
+
+    <h2>Enforcement & Complaints</h2>
+    <p>If you believe we have not met accessibility standards despite our best efforts, please let us know. We take accessibility seriously and will work to resolve issues promptly.</p>
+
+    <p style="margin-top: 40px;"><a href="/" class="back-link">← Back to Generator</a></p>
+</body>
+</html>

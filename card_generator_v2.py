@@ -319,7 +319,15 @@ def draw_card_answers(c: canvas.Canvas, x: float, y: float, card_w: float, card_
         c.restoreState()
 
 
-def render_pdf(cards: List[Card], out_pdf: Path, cfg: LayoutConfig) -> None:
+def render_pdf(cards: List[Card], out_pdf: Path, cfg: LayoutConfig, print_mode: str = 'duplex_long') -> None:
+    """Render PDF with specified print mode.
+    
+    Args:
+        cards: List of cards to render
+        out_pdf: Output PDF file path
+        cfg: Layout configuration
+        print_mode: One of 'duplex_long', 'duplex_short', 'single_sided'
+    """
     page_w, page_h, card_w, card_h = grid_geometry(cfg)
 
     def card_xy(col: int, row: int) -> Tuple[float, float]:
@@ -337,24 +345,36 @@ def render_pdf(cards: List[Card], out_pdf: Path, cfg: LayoutConfig) -> None:
     for batch_start in range(0, len(cards), cfg.cols * cfg.rows):
         batch = cards[batch_start : batch_start + cfg.cols * cfg.rows]
 
-        # FRONT PAGE (questions)
+        # FRONT PAGE (questions) - always render
         for i, card in enumerate(batch):
             col, row = positions[i]
             x, y = card_xy(col, row)
             draw_card_questions(c, x, y, card_w, card_h, card, cfg)
         c.showPage()
 
-        # BACK PAGE (answers) - for duplex long-edge printing
-        # Layout ensures when printed, flipped along long edge, cut, and each card flipped:
-        # - Keep columns the same
-        # - Reverse rows (top row of questions → bottom row of answers)
-        # - Rotate each card 180° so answers appear right-side up when flipped
-        for i, card in enumerate(batch):
-            col, row = positions[i]
-            mirrored_row = (cfg.rows - 1) - row
-            x, y = card_xy(col, mirrored_row)
-            draw_card_answers(c, x, y, card_w, card_h, card, cfg, rotate_180=True)
-        c.showPage()
+        # BACK PAGE (answers) - depends on print mode
+        if print_mode == 'single_sided':
+            # Skip answer pages for single-sided printing
+            continue
+        elif print_mode == 'duplex_long':
+            # Long-edge duplex: Keep columns same, reverse rows, rotate 180°
+            for i, card in enumerate(batch):
+                col, row = positions[i]
+                mirrored_row = (cfg.rows - 1) - row
+                x, y = card_xy(col, mirrored_row)
+                draw_card_answers(c, x, y, card_w, card_h, card, cfg, rotate_180=True)
+            c.showPage()
+        elif print_mode == 'duplex_short':
+            # Short-edge duplex: Mirror both columns and rows, rotate 180°
+            for i, card in enumerate(batch):
+                col, row = positions[i]
+                mirrored_col = (cfg.cols - 1) - col
+                mirrored_row = (cfg.rows - 1) - row
+                x, y = card_xy(mirrored_col, mirrored_row)
+                draw_card_answers(c, x, y, card_w, card_h, card, cfg, rotate_180=True)
+            c.showPage()
+        else:
+            raise ValueError(f"Invalid print_mode: {print_mode}. Must be one of: duplex_long, duplex_short, single_sided")
 
     c.save()
 
