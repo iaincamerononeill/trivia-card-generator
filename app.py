@@ -55,18 +55,6 @@ def accessibility():
     return render_template('accessibility.html')
 
 
-@app.route('/privacy')
-def privacy():
-    """Serve the privacy policy page."""
-    return render_template('privacy.html')
-
-
-@app.route('/accessibility')
-def accessibility():
-    """Serve the accessibility statement page."""
-    return render_template('accessibility.html')
-
-
 @app.route('/api/generate', methods=['POST'])
 def generate_cards():
     """
