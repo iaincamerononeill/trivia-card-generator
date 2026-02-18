@@ -10,6 +10,7 @@ import tempfile
 import os
 import secrets
 from werkzeug.utils import secure_filename
+from werkzeug.exceptions import RequestEntityTooLarge
 from card_generator_v2 import load_cards_from_csv, render_pdf, LayoutConfig
 
 app = Flask(__name__)
@@ -35,6 +36,13 @@ def set_security_headers(response):
     response.headers['X-XSS-Protection'] = '1; mode=block'
     response.headers['Content-Security-Policy'] = "default-src 'self'"
     return response
+
+
+# Error handler for file size limit
+@app.errorhandler(413)
+def request_entity_too_large(error):
+    """Handle file size exceeding limit."""
+    return jsonify({'error': 'File size exceeds 10MB limit'}), 413
 
 
 @app.route('/')
@@ -143,6 +151,11 @@ def generate_cards():
         app.logger.warning(f"Validation error: {error_msg}")
         return jsonify({'error': error_msg}), 400
     
+    except RequestEntityTooLarge:
+        # File size exceeds limit
+        app.logger.warning("File size exceeds 10MB limit")
+        return jsonify({'error': 'File size exceeds 10MB limit'}), 413
+    
     except Exception as e:
         # Unexpected errors - don't expose internal details in production
         app.logger.error(f"Error generating cards: {str(e)}", exc_info=True)
@@ -242,7 +255,7 @@ def generate_with_ai():
 @app.route('/api/health', methods=['GET'])
 def health():
     """Health check endpoint."""
-    return jsonify({'status': 'ok'})
+    return jsonify({'status': 'healthy'})
 
 
 if __name__ == '__main__':
