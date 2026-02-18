@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trivia Card Generator</title>
+    <title>All Round Learning - Trivia Card Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,7 +16,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f4f7fa;
+            background: linear-gradient(135deg, #f9f9fa 0%, #e8e5f0 100%);
             min-height: 100vh;
             padding: 30px 20px;
         }
@@ -21,17 +24,30 @@
         .header {
             text-align: center;
             margin-bottom: 40px;
+            background: linear-gradient(135deg, #6c34b9 0%, #8c06ac 100%);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(108, 52, 185, 0.2);
+        }
+
+        .header-logo {
+            max-width: 180px;
+            height: auto;
+            margin-bottom: 20px;
         }
 
         .header h1 {
+            font-family: 'Fredoka One', cursive;
             font-size: 2.5em;
-            color: #2c3e50;
+            color: white;
             margin-bottom: 8px;
-            font-weight: 700;
+            font-weight: 400;
+            letter-spacing: 0.5px;
         }
 
         .header p {
-            color: #7f8c8d;
+            color: rgba(255, 255, 255, 0.9);
             font-size: 1.1em;
         }
 
@@ -70,7 +86,7 @@
         }
 
         .tab.active {
-            color: #3498db;
+            color: #6c34b9;
             background: white;
         }
 
@@ -81,7 +97,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: #3498db;
+            background: #6c34b9;
         }
 
         .tab-content {
@@ -104,13 +120,13 @@
         }
 
         .upload-area:hover {
-            border-color: #3498db;
-            background: #ebf5fb;
+            border-color: #6c34b9;
+            background: #f3e5f5;
         }
 
         .upload-area.dragover {
-            border-color: #2980b9;
-            background: #d6eaf8;
+            border-color: #8c06ac;
+            background: #ede7f6;
         }
 
         .upload-icon {
@@ -135,7 +151,7 @@
         .btn-browse {
             display: inline-block;
             padding: 10px 24px;
-            background: #3498db;
+            background: #6c34b9;
             color: white;
             border-radius: 6px;
             font-weight: 600;
@@ -144,7 +160,7 @@
         }
 
         .btn-browse:hover {
-            background: #2980b9;
+            background: #8c06ac;
         }
 
         .file-info {
@@ -241,8 +257,8 @@
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #3498db;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            border-color: #6c34b9;
+            box-shadow: 0 0 0 3px rgba(108, 52, 185, 0.1);
         }
 
         .form-help {
@@ -252,16 +268,17 @@
         }
 
         .form-help a {
-            color: #3498db;
+            color: #6c34b9;
             text-decoration: none;
         }
 
         .form-help a:hover {
             text-decoration: underline;
+            color: #8c06ac;
         }
 
         .btn {
-            background: #3498db;
+            background: linear-gradient(135deg, #6c34b9 0%, #8c06ac 100%);
             color: white;
             border: none;
             padding: 14px 28px;
@@ -270,11 +287,14 @@
             font-size: 16px;
             font-weight: 600;
             width: 100%;
-            transition: background 0.2s;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(108, 52, 185, 0.3);
         }
 
         .btn:hover:not(:disabled) {
-            background: #2980b9;
+            background: linear-gradient(135deg, #7d45ca 0%, #9d17bd 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(108, 52, 185, 0.4);
         }
 
         .btn:disabled {
@@ -295,26 +315,26 @@
         }
 
         .status.error {
-            background: #fadbd8;
-            color: #c0392b;
-            border-left: 4px solid #e74c3c;
+            background: #ffebee;
+            color: #b90131;
+            border-left: 4px solid #b90131;
         }
 
         .status.success {
-            background: #d5f4e6;
-            color: #196f3d;
+            background: #e8f5e9;
+            color: #2e7d32;
             border-left: 4px solid #27ae60;
         }
 
         .status.info {
-            background: #d6eaf8;
-            color: #1a5490;
-            border-left: 4px solid #3498db;
+            background: #f3e5f5;
+            color: #6c34b9;
+            border-left: 4px solid #6c34b9;
         }
 
         .spinner {
             border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top: 3px solid white;
+            border-top: 3px solid #fbcd02;
             border-radius: 50%;
             width: 18px;
             height: 18px;
@@ -373,7 +393,7 @@
         }
 
         footer a {
-            color: #3498db;
+            color: #6c34b9;
             text-decoration: none;
             margin: 0 12px;
             font-weight: 500;
@@ -381,6 +401,7 @@
 
         footer a:hover {
             text-decoration: underline;
+            color: #8c06ac;
         }
 
         footer small {
@@ -406,7 +427,8 @@
 </head>
 <body>
     <div class="header">
-        <h1>🎯 Trivia Card Generator</h1>
+        <img src="/static/images/logo.png" alt="All Round Learning" class="header-logo">
+        <h1>Trivia Card Generator</h1>
         <p>Create printable trivia cards for educational games</p>
     </div>
 
@@ -549,9 +571,10 @@
     </div>
 
     <footer>
-        <a href="/privacy">Privacy Policy</a> | 
+        Powered by <a href="https://allroundlearning.co.uk" target="_blank" rel="noopener">All Round Learning</a> · 
+        <a href="/privacy">Privacy Policy</a> · 
         <a href="/accessibility">Accessibility</a>
-        <small>© 2026 Trivia Card Generator · For educational use</small>
+        <small>© 2026 All Round Learning · For educational use</small>
     </footer>
 
     <script>
@@ -606,7 +629,10 @@
         });
 
         function handleFileSelect(file) {
-            if (!file.name.endsWith('.csv')) {
+            console.log('File selected:', file.name, 'Size:', file.size);
+            
+            if (!file.name.toLowerCase().endsWith('.csv')) {
+                console.log('File rejected - not a CSV');
                 showUploadStatus('Please select a CSV file', 'error');
                 return;
             }
@@ -615,6 +641,7 @@
             fileName.textContent = file.name + ' (' + formatFileSize(file.size) + ')';
             fileInfo.classList.add('show');
             generateBtn.disabled = false;
+            console.log('Button enabled, disabled =', generateBtn.disabled);
             hideUploadStatus();
         }
 
@@ -673,7 +700,7 @@
                 showUploadStatus('❌ Network error. Please try again.', 'error');
             } finally {
                 generateBtn.disabled = false;
-                generateBtn.textContent = 'Generate Cards';
+                generateBtn.textContent = 'Generate PDF';
             }
         });
 
